@@ -1,5 +1,21 @@
-module.exports = app => {
-  const { router, controller } = app;
-  router.get('/', controller.home.index);
-  router.get('/list', controller.home.create);
-};
+/**
+ *  用于统一管理 router 的注册引用。
+ */
+const fs = require('fs');
+
+module.exports = registRoutes = (app) => {
+  fs.readdirSync(__dirname + '/route/admin').forEach(file => {
+    require(`./route/front/${file}`)(app)
+  })
+  fs.readdirSync(__dirname + '/route/front').forEach(file => {
+    require(`./route/front/${file}`)(app)
+  })
+
+}
+
+// module.exports = app => {
+//   fs.readdirSync(__dirname + '/route/front').forEach(file => {
+//     console.log(file);
+//     require(`./route/front/${file}`)(app)
+//   })
+// }
