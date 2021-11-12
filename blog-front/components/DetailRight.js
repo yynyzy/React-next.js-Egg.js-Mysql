@@ -4,8 +4,11 @@ import {
     FolderOpenOutlined,
     FireOutlined
 } from '@ant-design/icons';
+import ReactMarkdown from 'react-markdown'
 
-export default function DetailRight() {
+
+export default function DetailRight(props) {
+    const { markdown } = props
     return (
         <div>
             <div className="bread-div">
@@ -28,7 +31,10 @@ export default function DetailRight() {
                 </div>
 
                 <div className="detailed-content" >
-                    详细内容，下节课编写
+                    <ReactMarkdown
+                        children={markdown}
+                        escapeHTML={false}
+                    />
                 </div>
 
             </div>
