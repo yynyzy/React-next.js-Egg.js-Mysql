@@ -49,7 +49,7 @@ export default function Home() {
     return (
         <div>
             <Head>
-                <title>Home</title>
+                <title>YYN_Detail</title>
             </Head>
             <Header />
             <Row className="comm-main" type="flex" justify="center">

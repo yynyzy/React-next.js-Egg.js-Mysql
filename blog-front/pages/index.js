@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>YYN</title>
+        <title>YYN_HOME</title>
       </Head>
       <Header />
       <Row className="comm-main" type="flex" justify="center">
