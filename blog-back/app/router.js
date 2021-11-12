@@ -3,7 +3,7 @@
  */
 const fs = require('fs');
 
-module.exports = registRoutes = (app) => {
+module.exports = (app) => {
   fs.readdirSync(__dirname + '/route/admin').forEach(file => {
     require(`./route/front/${file}`)(app)
   })

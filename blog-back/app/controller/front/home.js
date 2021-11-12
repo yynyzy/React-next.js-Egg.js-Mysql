@@ -1,11 +1,12 @@
 'use strict';
-
 const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
   async index() {
-    const { ctx } = this;
-    ctx.body = '<div>123456</div>';
+    let result = await this.app.mysql.get("blogcontent", {})
+    console.log(1);
+    console.log(result)
+    this.ctx.body = result
   }
 }
 
