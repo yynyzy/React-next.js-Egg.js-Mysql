@@ -1,5 +1,6 @@
 
 module.exports = (app) => {
     const { router, controller } = app;
-    router.get('/front/home', controller.front.home.index)
+    const CFront = controller.front.home
+    router.get('/front/home', CFront.getArticleList)
 }

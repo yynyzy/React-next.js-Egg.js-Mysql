@@ -1,13 +1,14 @@
-'use strict';
 const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
-  async index() {
-    let result = await this.app.mysql.get("blogcontent", {})
-    console.log(1);
-    console.log(result)
-    this.ctx.body = result
+  async getArticleList() {
+    const { ctx } = this
+    const result = await ctx.service.front.home.getArticleList()
+    ctx.body = {
+      data: result
+    }
   }
+
 }
 
 module.exports = HomeController;
