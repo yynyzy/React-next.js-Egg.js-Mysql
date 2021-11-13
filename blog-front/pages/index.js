@@ -7,10 +7,14 @@ import Author from '../components/Author'
 import HomeRight from '../components/HomeRight'
 import PicLink from '../components/PicLink'
 import Footer from '../components/Footer'
+import { getArticleList } from '../service/homeService'
+
 
 
 export default function Home() {
-
+  const ArticleList = getArticleList()
+  const [mylist, setMylist] = useState(ArticleList);
+  console.log(ArticleList);
   return (
     <div>
       <Head>
@@ -20,11 +24,11 @@ export default function Home() {
       <Row className="comm-main" type="flex" justify="center">
         {/* 左侧 */}
         <Col className="comm-left" xs={24} sm={24} md={16} lg={18} xl={14}  >
-          <HomeRight />
+          <HomeRight mylist={mylist} />
         </Col>
         {/* 右侧 */}
         <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
-          <Author />
+          <Author mylist={mylist} />
           <PicLink />
         </Col>
       </Row>
