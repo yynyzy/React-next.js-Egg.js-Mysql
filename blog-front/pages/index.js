@@ -7,14 +7,15 @@ import Author from '../components/Author'
 import HomeRight from '../components/HomeRight'
 import PicLink from '../components/PicLink'
 import Footer from '../components/Footer'
-import { getArticleList } from '../service/homeService'
+import axios from 'axios'
+// import { getArticleList } from '../service/homeService'
 
 
+export default function Home(props) {
+  // const ArticleList = getArticleList()
+  const [mylist, setMylist] = useState(props.data);
 
-export default function Home() {
-  const ArticleList = getArticleList()
-  const [mylist, setMylist] = useState(ArticleList);
-  console.log(ArticleList);
+
   return (
     <div>
       <Head>
@@ -35,4 +36,17 @@ export default function Home() {
       <Footer />
     </div>
   )
+}
+
+Home.getInitialProps = async () => {
+  const promise = new Promise((resolve) => {
+    axios('http://127.0.0.1:7002/front/ArticleLists').then(
+      (res) => {
+        console.log('远程获取数据结果:', res.data.data)
+        resolve(res.data)
+      }
+    )
+  })
+
+  return await promise
 }

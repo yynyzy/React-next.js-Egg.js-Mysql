@@ -8,7 +8,6 @@ import {
 
 export default function HomeRight(props) {
     const { mylist } = props
-    console.log(mylist);
     return (
         <List
             header={
@@ -22,9 +21,9 @@ export default function HomeRight(props) {
                 <List.Item>
                     <div className="list-title ">{item.title}</div>
                     <div className="list-icon">
-                        <span><CalendarOutlined />{item.addTime}</span>
+                        <span><CalendarOutlined />{item.createTime}</span>
                         <span><FolderOpenOutlined />{item.typeName}</span>
-                        <span><FireOutlined /> {item.view_count}</span>
+                        <span><FireOutlined /> 5498人</span>
                     </div>
                     <div className="list-context">{item.introduce}</div>
                 </List.Item>
