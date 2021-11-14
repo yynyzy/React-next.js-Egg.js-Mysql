@@ -1,6 +1,6 @@
 import axios from 'axios'
-
-let baseURL = "http://127.0.0.1:7002"
+import { API_BASE_URL } from '../config/env'
+let baseURL = API_BASE_URL
 // if (process.env.NODE_ENV === 'production') {
 //     baseURL = '上线的地址'
 // } else {
@@ -22,7 +22,7 @@ axios.interceptors.request.use((config) => {
 })
 
 // axios的get请求
-export function Axios_get(url, params = {}) {
+function axios_get(url, params = {}) {
     return new Promise((resolve, reject) => {
         axios.get(url, {
             params,
@@ -36,7 +36,7 @@ export function Axios_get(url, params = {}) {
 }
 
 // axios的post请求
-export function Axios_post(url, data) {
+function axios_post(url, data) {
     return new Promise((resolve, reject) => {
         axios({
             url,
@@ -50,4 +50,9 @@ export function Axios_post(url, data) {
     })
 }
 
-export default axios
+export {
+    axios,
+    axios_get,
+    axios_post
+}
+

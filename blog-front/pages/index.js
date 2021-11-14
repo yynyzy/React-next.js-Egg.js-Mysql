@@ -8,7 +8,7 @@ import HomeRight from '../components/HomeRight'
 import PicLink from '../components/PicLink'
 import Footer from '../components/Footer'
 import axios from 'axios'
-// import { getArticleList } from '../service/homeService'
+import { axios_get } from '../utils/axios'
 
 
 export default function Home(props) {
@@ -39,16 +39,7 @@ export default function Home(props) {
 }
 
 Home.getInitialProps = async () => {
-  return await new Promise((resolve) => {
-    axios('http://127.0.0.1:7001/front/ArticleLists').then(
-      res => {
-        console.log(res.data);
-        resolve(res.data)
-      }
-    ).catch(err => {
-      console.log(err);
-    })
-  })
-
+  const res = await axios_get('/front/ArticleLists')
+  return res
 
 }

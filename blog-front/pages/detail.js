@@ -13,10 +13,11 @@ import Footer from '../components/Footer'
 import DetailRight from '../components/DetailRight'
 import MarkdownNavbar from '../components/MarkdownNavbar'
 import Tocify from '../utils/tocify.tsx'
-
+import { axios_get } from '../utils/axios'
 
 export default function Detail(props) {
     //用于解析 Markdown 格式，与文章右侧目录的配置
+    const tocify = new Tocify()
     const renderer = new marked.Renderer()
     renderer.heading = function (text, level, raw) {
         const anchor = tocify.add(text, level);
@@ -35,9 +36,8 @@ export default function Detail(props) {
             return hljs.highlightAuto(code).value;
         }
     })
-    const tocify = new Tocify()
-
     const html = marked(props.content)
+
     return (
         <div>
             <Head>
@@ -62,11 +62,6 @@ export default function Detail(props) {
 }
 Detail.getInitialProps = async (context) => {
     const id = context.query.id
-    return await new Promise((resolve) => {
-        axios(`http://127.0.0.1:7001/front/ArticleList/${id}`).then(
-            res => {
-                resolve(res.data.data[0])
-            }
-        )
-    })
+    const res = await axios_get(`/front/ArticleList/${id}`)
+    return res.data[0]
 }
