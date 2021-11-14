@@ -1,16 +1,13 @@
-import MarkNav from 'markdown-navbar';
-import 'markdown-navbar/dist/navbar.css';
+/**
+ *  文章详情页面的右侧目录
+ */
 
 export default function MarkdownNavbar(props) {
-    const { markdown } = props
+    const { tocify } = props
     return (
         <div className="detailed-nav comm-box">
             <div className="nav-title">文章目录</div>
-            <MarkNav
-                className="article-menu"
-                source={markdown}
-                ordered={false}
-            />
+            {tocify && tocify.render()}
         </div>
     )
 }

@@ -12,11 +12,16 @@ import PicLink from '../components/PicLink'
 import Footer from '../components/Footer'
 import DetailRight from '../components/DetailRight'
 import MarkdownNavbar from '../components/MarkdownNavbar'
-
+import Tocify from '../utils/tocify.tsx'
 
 
 export default function Detail(props) {
-    const renderer = new marked.Renderer();
+    //用于解析 Markdown 格式，与文章右侧目录的配置
+    const renderer = new marked.Renderer()
+    renderer.heading = function (text, level, raw) {
+        const anchor = tocify.add(text, level);
+        return `<a id="${anchor}" href="#${anchor}" class="anchor-fix"><h${level}>${text}</h${level}></a>\n`;
+    };
     marked.setOptions({
         renderer: renderer,
         gfm: true,
@@ -29,7 +34,9 @@ export default function Detail(props) {
         highlight: function (code) {
             return hljs.highlightAuto(code).value;
         }
-    });
+    })
+    const tocify = new Tocify()
+
     const html = marked(props.content)
     return (
         <div>
@@ -44,7 +51,7 @@ export default function Detail(props) {
                 <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
                     <Author />
                     <Affix offsetTop={55}>
-                        <MarkdownNavbar markdown={html} />
+                        <MarkdownNavbar tocify={tocify} />
                     </Affix>
                     <PicLink />
                 </Col>
