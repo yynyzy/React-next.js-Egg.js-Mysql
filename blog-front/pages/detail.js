@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { Row, Col, Affix } from 'antd'
+import axios from 'axios'
 
 import Header from '../components/Header'
 import Author from '../components/Author'
@@ -10,7 +11,7 @@ import DetailRight from '../components/DetailRight'
 import MarkdownNavbar from '../components/MarkdownNavbar'
 
 
-export default function Home() {
+export default function Detail() {
     let markdown =
         '\n# P01:课程介绍和环境搭建\n' +
         '[ **M** ] arkdown + E [ **ditor** ] = **Mditor**  \n' +
@@ -67,4 +68,16 @@ export default function Home() {
             <Footer />
         </div>
     )
+}
+Detail.getInitialProps = async (context) => {
+
+    console.log(context.query.id)
+    let id = context.query.id
+    return await new Promise((resolve) => {
+        axios(`http://127.0.0.1:7002/front/ArticleList/${id}`).then(
+            res => {
+                resolve(res.data.data[0])
+            }
+        )
+    })
 }

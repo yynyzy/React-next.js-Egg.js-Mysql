@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Link from 'next/link'
 import { List } from 'antd'
 import {
     CalendarOutlined,
@@ -19,7 +20,11 @@ export default function HomeRight(props) {
             dataSource={mylist}
             renderItem={item =>
                 <List.Item>
-                    <div className="list-title ">{item.title}</div>
+                    <div className="list-title ">
+                        <Link href={{ pathname: '/detail', query: { id: item.id } }}>
+                            <a>{item.title}</a>
+                        </Link>
+                    </div>
                     <div className="list-icon">
                         <span><CalendarOutlined />{item.createTime}</span>
                         <span><FolderOpenOutlined />{item.typeName}</span>

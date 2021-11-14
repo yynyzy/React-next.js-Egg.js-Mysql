@@ -39,14 +39,16 @@ export default function Home(props) {
 }
 
 Home.getInitialProps = async () => {
-  const promise = new Promise((resolve) => {
+  return await new Promise((resolve) => {
     axios('http://127.0.0.1:7002/front/ArticleLists').then(
-      (res) => {
-        console.log('远程获取数据结果:', res.data.data)
+      res => {
+        console.log(res.data);
         resolve(res.data)
       }
-    )
+    ).catch(err => {
+      console.log(err);
+    })
   })
 
-  return await promise
+
 }
