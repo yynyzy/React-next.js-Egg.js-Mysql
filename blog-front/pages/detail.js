@@ -1,7 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
 import { Row, Col, Affix } from 'antd'
-import axios from 'axios'
 import marked from 'marked'
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
@@ -14,6 +13,7 @@ import DetailRight from '../components/DetailRight'
 import MarkdownNavbar from '../components/MarkdownNavbar'
 import Tocify from '../utils/tocify.tsx'
 import { axios_get } from '../utils/axios'
+import { ArticleList_ID } from '../service/servicePath'
 
 export default function Detail(props) {
     //用于解析 Markdown 格式，与文章右侧目录的配置
@@ -62,6 +62,6 @@ export default function Detail(props) {
 }
 Detail.getInitialProps = async (context) => {
     const id = context.query.id
-    const res = await axios_get(`/front/ArticleList/${id}`)
+    const res = await axios_get(`${ArticleList_ID}/${id}`)
     return res.data[0]
 }

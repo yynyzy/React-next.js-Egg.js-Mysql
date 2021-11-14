@@ -7,12 +7,10 @@ import Author from '../components/Author'
 import HomeRight from '../components/HomeRight'
 import PicLink from '../components/PicLink'
 import Footer from '../components/Footer'
-import axios from 'axios'
 import { axios_get } from '../utils/axios'
-
+import { ArticleLists } from '../service/servicePath'
 
 export default function Home(props) {
-  // const ArticleList = getArticleList()
   const [mylist, setMylist] = useState(props.data);
 
 
@@ -39,7 +37,6 @@ export default function Home(props) {
 }
 
 Home.getInitialProps = async () => {
-  const res = await axios_get('/front/ArticleLists')
+  const res = await axios_get(ArticleLists)
   return res
-
 }
