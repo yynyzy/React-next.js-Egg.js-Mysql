@@ -4,4 +4,5 @@ module.exports = (app) => {
     const CFront = controller.front.home
     router.get('/front/ArticleLists', CFront.getArticleList)
     router.get('/front/ArticleList/:id', CFront.getArticleById)
+    router.get('/front/HeaderBarType', CFront.getHeaderBarType)
 }

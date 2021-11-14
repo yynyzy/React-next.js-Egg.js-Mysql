@@ -34,9 +34,15 @@ class HomeService extends Service {
         FROM blog_article bAct 
         LEFT JOIN blog_type bType 
         ON bAct.article_type_id = bType.id
-        WHERE bAct.id = 1
+        WHERE bAct.id = ?
         `
         const result = await this.app.mysql.query(statement, [id])
+        return result
+    }
+
+    //得到header组件标签分类名称和编号
+    async getHeaderBarType() {
+        const result = await this.app.mysql.select('blog_type')
         return result
     }
 }

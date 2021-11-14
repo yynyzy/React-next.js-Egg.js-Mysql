@@ -12,8 +12,6 @@ import { ArticleLists } from '../service/servicePath'
 
 export default function Home(props) {
   const [mylist, setMylist] = useState(props.data);
-
-
   return (
     <div>
       <Head>

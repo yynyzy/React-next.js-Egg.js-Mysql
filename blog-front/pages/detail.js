@@ -53,7 +53,6 @@ export default function Detail(props) {
                     <Affix offsetTop={55}>
                         <MarkdownNavbar tocify={tocify} />
                     </Affix>
-                    <PicLink />
                 </Col>
             </Row>
             <Footer />
