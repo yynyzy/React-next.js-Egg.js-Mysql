@@ -40,7 +40,7 @@ export default function Home(props) {
 
 Home.getInitialProps = async () => {
   return await new Promise((resolve) => {
-    axios('http://127.0.0.1:7002/front/ArticleLists').then(
+    axios('http://127.0.0.1:7001/front/ArticleLists').then(
       res => {
         console.log(res.data);
         resolve(res.data)
