@@ -70,12 +70,11 @@ export default function Detail() {
     )
 }
 Detail.getInitialProps = async (context) => {
-
-    console.log(context.query.id)
-    let id = context.query.id
+    const id = context.query.id
     return await new Promise((resolve) => {
         axios(`http://127.0.0.1:7001/front/ArticleList/${id}`).then(
             res => {
+                console.log(res.data);
                 resolve(res.data.data[0])
             }
         )
