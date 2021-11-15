@@ -40,4 +40,14 @@ export default function List() {
         </div>
     )
 }
+List.getInitialProps = async (context) => {
+    let { id } = context.query.id
+    console.log(id);
+    const promise = new Promise((resolve) => {
+        axios(servicePath.getListById + id).then(
+            (res) => resolve(res.data)
+        )
+    })
+    return await promise
+}
 

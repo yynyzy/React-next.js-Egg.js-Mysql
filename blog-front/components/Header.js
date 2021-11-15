@@ -50,10 +50,9 @@ export default function Header(props) {
                                 首页
                             </Menu.Item>
                             {
-                                headerBarArr.map(item => {
+                                headerBarArr.map((item) => {
                                     return (
                                         <Menu.Item key={item.id}>
-                                            {item.type_icon ? <item.type_icon style={{ fontSize: 20 }} /> : ''}
                                             {item.type_name}
                                         </Menu.Item>
                                     )

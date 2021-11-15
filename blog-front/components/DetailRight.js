@@ -7,27 +7,26 @@ import {
 
 
 export default function DetailRight(props) {
-    const { markdown } = props
-
+    const { markdown, viewCount, title, createTime, typeName } = props
     return (
         <div>
             <div className="bread-div">
                 <Breadcrumb>
                     <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
                     <Breadcrumb.Item>视频列表</Breadcrumb.Item>
-                    <Breadcrumb.Item>xxxx</Breadcrumb.Item>
+                    <Breadcrumb.Item> {typeName}</Breadcrumb.Item>
                 </Breadcrumb>
             </div>
 
             <div>
                 <div className="detailed-title">
-                    React实战视频教程-YYN开发(更新08集)
+                    {title}
                 </div>
 
                 <div className="list-icon center">
-                    <span><CalendarOutlined /> 2019-06-28</span>
-                    <span><FolderOpenOutlined /> 视频教程</span>
-                    <span><FireOutlined /> 5498人</span>
+                    <span><CalendarOutlined />{createTime}</span>
+                    <span><FolderOpenOutlined /> {typeName}</span>
+                    <span><FireOutlined /> {viewCount}人</span>
                 </div>
 
                 <div className="detailed-content"
