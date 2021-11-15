@@ -9,7 +9,7 @@ import PicLink from '../components/PicLink'
 import Footer from '../components/Footer'
 
 
-export default function Lists() {
+export default function List() {
 
     return (
         <div>
