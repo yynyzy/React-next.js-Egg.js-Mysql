@@ -1,5 +1,6 @@
 @import '~antd/dist/antd.css';
 body {
+  background-color: #f0f0f0;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -9,7 +10,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
