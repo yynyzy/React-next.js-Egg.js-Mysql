@@ -159,8 +159,15 @@ pre{
    border-radius: .3rem;
 }
 pre{
+  display: block;
   background-color: #283646 !important;
+   padding: .5rem !important;
+   overflow-y: auto;
+   font-weight: 300;
+   font-family: Menlo, monospace;
+   border-radius: .3rem;
 }
+
 pre >code{
   border:0px !important;
   background-color: #283646 !important;
@@ -179,6 +186,17 @@ code {
   margin: 0px 3px;
 
 }
+
+.list-context img{
+ width:100% ;
+ border-radius:5px;
+ border:1px solid #f0f0f0;
+ max-width:1000px !important;
+ display: block;
+ margin:8px  auto ;
+
+}
+
 
 .title-anchor{
   color:#888 !important;

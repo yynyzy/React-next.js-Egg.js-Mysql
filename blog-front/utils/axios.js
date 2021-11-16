@@ -29,7 +29,6 @@ function axios_get(url, params = {}) {
         }).then(res => {
             resolve(res.data)
         }).catch(err => {
-            console.log(err, '1')
             reject(err)
         })
     })

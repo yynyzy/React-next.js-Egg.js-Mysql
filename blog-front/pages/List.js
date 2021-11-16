@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 import { Row, Col, Breadcrumb } from 'antd'
 
 import Header from '../components/Header'
@@ -7,9 +8,14 @@ import Author from '../components/Author'
 import HomeRight from '../components/HomeRight'
 import PicLink from '../components/PicLink'
 import Footer from '../components/Footer'
+import { axios_get } from '../utils/axios'
+import { List_Id } from '../service/servicePath'
 
-
-export default function List() {
+export default function List(props) {
+    const [lists, setLists] = useState(props.data)
+    useEffect(() => {
+        setLists(props.data)
+    })
 
     return (
         <div>
@@ -21,13 +27,13 @@ export default function List() {
                 {/* 左侧 */}
 
                 <Col className="comm-left" xs={24} sm={24} md={16} lg={18} xl={14}  >
-                    <HomeRight>
-                        <div className="bread-div">
-                            <Breadcrumb>
-                                <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
-                                <Breadcrumb.Item>视频列表</Breadcrumb.Item>
-                            </Breadcrumb>
-                        </div>
+                    <div className="bread-div">
+                        <Breadcrumb>
+                            <Breadcrumb.Item><a href="/">首页</a></Breadcrumb.Item>
+                            <Breadcrumb.Item>视频列表</Breadcrumb.Item>
+                        </Breadcrumb>
+                    </div>
+                    <HomeRight mylist={lists}>
                     </HomeRight>
                 </Col>
                 {/* 右侧 */}
@@ -41,13 +47,8 @@ export default function List() {
     )
 }
 List.getInitialProps = async (context) => {
-    let { id } = context.query.id
-    console.log(id);
-    const promise = new Promise((resolve) => {
-        axios(servicePath.getListById + id).then(
-            (res) => resolve(res.data)
-        )
-    })
-    return await promise
+    let { id } = context.query
+    const res = await axios_get(`${List_Id}/${id}`)
+    return res
 }
 

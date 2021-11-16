@@ -19,14 +19,12 @@ export default function Header(props) {
         const result = await axios_get(HeaderBarType)
         setHeaderBarArr(result.data)
     }, [])
-    console.log(headerBarArr);
 
     const toBar = (e) => {
-        console.log(e);
         if (e.key == 0) {
             Router.push('/')
         } else {
-            Router.push('/list/' + e.key)
+            Router.push(`/list?id=${e.key}`)
         }
     }
 

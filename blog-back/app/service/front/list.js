@@ -20,7 +20,6 @@ class ListService extends Service {
         WHERE  bType.id = ?
         `
         const result = await this.app.mysql.query(statement, [id])
-        console.log(result);
         return result
     }
 }

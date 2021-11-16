@@ -10,8 +10,10 @@ import Footer from '../components/Footer'
 import { axios_get } from '../utils/axios'
 import { ArticleLists } from '../service/servicePath'
 
+
 export default function Home(props) {
   const [mylist, setMylist] = useState(props.data);
+
   return (
     <div>
       <Head>
