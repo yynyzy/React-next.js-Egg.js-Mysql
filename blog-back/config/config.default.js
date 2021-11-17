@@ -2,16 +2,16 @@ module.exports = appInfo => {
   const config = exports = {};
   config.keys = appInfo.name + '_1636706309676_2238';
 
-  config.middleware = [];
+  config.middleware = ['error_handle'],
 
-  //解决跨域
-  config.security = {
-    csrf: false,
-    scrf: {
-      enable: false
-    },
-    domainWhitelist: ['*']
-  }
+    //解决跨域
+    config.security = {
+      csrf: false,
+      scrf: {
+        enable: false
+      },
+      domainWhitelist: ['*']
+    }
   config.cors = {
     origin: '*', // 表示允许的源
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH' // 表示允许的http请求方式
