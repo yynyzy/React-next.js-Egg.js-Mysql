@@ -5,7 +5,7 @@ const fs = require('fs');
 
 module.exports = (app) => {
   fs.readdirSync(__dirname + '/route/admin').forEach(file => {
-    require(`./route/front/${file}`)(app)
+    require(`./route/admin/${file}`)(app)
   })
   fs.readdirSync(__dirname + '/route/front').forEach(file => {
     require(`./route/front/${file}`)(app)

@@ -1,8 +1,8 @@
 
 module.exports = (app) => {
     const { router, controller } = app;
-    const CFront = controller.front.home
-    router.get('/front/ArticleLists', CFront.getArticleList)
-    router.get('/front/ArticleList/:id', CFront.getArticleById)
-    router.get('/front/HeaderBarType', CFront.getHeaderBarType)
+    const CFH = controller.front.home
+    router.get('/front/ArticleLists', CFH.getArticleList)
+    router.get('/front/ArticleList/:id', CFH.getArticleById)
+    router.get('/front/HeaderBarType', CFH.getHeaderBarType)
 }
