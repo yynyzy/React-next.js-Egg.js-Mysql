@@ -8,10 +8,9 @@ export default function App() {
   return (
     <div className="App">
       <Router>
-        <Route path="/login/" exact component={Login} />
-        <Route path="/Admin/" component={Admin} />
-        <Route path="/index/" component={Admin} />
-        <Route path="*" component={Login} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/Admin" exact component={Admin} />
+        <Route path="/index" exact component={Admin} />
       </Router>
     </div >
   );

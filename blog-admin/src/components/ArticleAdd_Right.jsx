@@ -7,8 +7,8 @@ const { TextArea } = Input
 export default function ArticleAddRight(props) {
     const { changeContent, articleContent, markdownContent } = props
     return (
-        <div>
-            <Row gutter={10} style={{ marginBottom: 20 }}>
+        <div className="articleAddRight">
+            <Row gutter={10} style={{ marginBottom: 10 }}>
                 <Col span={20}>
                     <Input
                         placeholder="博客标题"
@@ -34,7 +34,8 @@ export default function ArticleAddRight(props) {
                 <Col span={12}>
                     <div
                         className="show-html"
-                        dangerouslySetInnerHTML={{ __html: markdownContent }} >
+                        dangerouslySetInnerHTML={{ __html: markdownContent }}
+                    >
                     </div>
                 </Col>
             </Row>

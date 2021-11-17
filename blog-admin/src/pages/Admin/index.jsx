@@ -27,7 +27,7 @@ export default function Admin() {
                 <div className="logo" />
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                     <Menu.Item key="1" icon={<PieChartOutlined />}>
-                        <Menu.Item key="3">工作台</Menu.Item>
+                        工作台
                     </Menu.Item>
                     <SubMenu key="sub1" icon={<UserOutlined />} title="User">
                         <Menu.Item key="3">添加文章</Menu.Item>
@@ -35,18 +35,18 @@ export default function Admin() {
                 </Menu>
             </Sider>
             <Layout className="site-layout">
-                <Content style={{ margin: '0 16px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
+                <Content style={{ margin: '0 10px' }}>
+                    <Breadcrumb style={{ margin: '6px 0' }}>
                         <Breadcrumb.Item>后台管理系统</Breadcrumb.Item>
                         <Breadcrumb.Item>工作台</Breadcrumb.Item>
                     </Breadcrumb>
-                    <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                    <div className="site-layout-background">
                         <div>
                             <Route path='/index' exact component={ArtAdd} />
                         </div>
                     </div>
                 </Content>
-                <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+                <Footer style={{ textAlign: 'center', paddingTop: 10, paddingBottom: 10 }}>Ant Design ©2018 Created by Ant UED</Footer>
             </Layout>
         </Layout>
     );
