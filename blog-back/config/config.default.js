@@ -2,7 +2,7 @@ module.exports = appInfo => {
   const config = exports = {};
   config.keys = appInfo.name + '_1636706309676_2238';
 
-  config.middleware = ['error_handle'],
+  config.middleware = [],
 
     //解决跨域
     config.security = {

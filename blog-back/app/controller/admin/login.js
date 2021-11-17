@@ -2,12 +2,11 @@ const Controller = require('egg').Controller
 
 class Login extends Controller {
     async createUser() {
-        const { ctx } = this
+        const { ctx, service } = this
         const registerUser = ctx.request.body
-        console.log(registerUser);
         const result = ctx.service.admin.login.createUser(registerUser)
         ctx.body = {
-            data: "注册成功"
+            data: "用户注册成功"
         }
     }
     async login() {
