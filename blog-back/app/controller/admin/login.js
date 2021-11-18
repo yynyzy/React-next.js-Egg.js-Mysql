@@ -21,6 +21,13 @@ class Login extends Controller {
             username, token
         }
     }
+    async sucess() {
+        const { user } = ctx
+        this.ctx.body = {
+            user,
+            message: "用户授权成功"
+        }
+    }
 }
 
 module.exports = Login

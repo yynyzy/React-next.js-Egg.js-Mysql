@@ -1,0 +1,36 @@
+/**
+ *  //验证用户是否授权(Token)
+ */
+const errorTypes = require("../constants/errorType")
+
+module.exports = options => {
+    //判断注册是否符合规范
+    return async function vertifyAuth(ctx, next) {
+        //1.获取 token
+        const authorization = ctx.headers.authorization
+        if (!authorization) {
+            const error = errorTypes.UNAUTHORIZED
+            return ctx.helper.fail(error);
+        }
+
+        const token = authorization.substring(7)
+        //2.验证token
+        try {
+            const result = await ctx.app.jwt.verify(token, ctx.app.config.jwt.secret, {
+                algorithms: ['RS256']
+            });
+            console.log('2', result);
+            // const result = jwt.verify(token, PUBLIC_KEY, {
+            //     algorithms: ['RS256']
+            // })
+            //将 token 解析出的用户信息保存到ctx中，供下一个中间件使用 
+            ctx.user = result
+            await next()
+        } catch (err) {
+            console.log(err);
+            const error = errorTypes.UNAUTHORIZED
+            return ctx.helper.fail(error);
+        }
+    }
+}
+
