@@ -8,7 +8,7 @@ class LoginService extends Service {
         INSERT INTO blog_user(username,password) VALUES(?,?);
         `
         const result = await this.app.mysql.query(statement, [username, password])
-        return result[0]
+        return result
     }
     //查询是否有这个用户
     async getUserByName(username) {

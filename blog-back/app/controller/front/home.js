@@ -3,17 +3,17 @@ const Controller = require('egg').Controller;
 class HomeController extends Controller {
   //获取所有文章
   async getArticleList() {
-    const { ctx } = this
-    const result = await ctx.service.front.home.getArticleList()
+    const { ctx, service } = this
+    const result = await service.front.home.getArticleList()
     ctx.body = {
       data: result
     }
   }
   //根据id获取文章
   async getArticleById() {
-    const { ctx } = this
+    const { ctx, service } = this
     const { id } = ctx.params
-    const result = await ctx.service.front.home.getArticleById(id)
+    const result = await service.front.home.getArticleById(id)
     ctx.body = {
       data: result
     }
@@ -21,9 +21,9 @@ class HomeController extends Controller {
 
   //得到header组件标签分类名称和编号
   async getHeaderBarType() {
-    const { ctx } = this
-    const result = await ctx.service.front.home.getHeaderBarType()
-    this.ctx.body = { data: result }
+    const { ctx, service } = this
+    const result = await service.front.home.getHeaderBarType()
+    ctx.body = { data: result }
 
   }
 }

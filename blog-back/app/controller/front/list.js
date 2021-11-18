@@ -2,9 +2,9 @@ const Controller = require('egg').Controller;
 
 class ListController extends Controller {
     async getListById() {
-        const { ctx } = this
-        const result = await ctx.service.front.list.getListById()
-        this.ctx.body = { data: result }
+        const { ctx, service } = this
+        const result = await service.front.list.getListById()
+        ctx.body = { data: result }
     }
 }
 

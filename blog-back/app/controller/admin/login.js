@@ -1,17 +1,29 @@
 const Controller = require('egg').Controller
+// const jwt = require('egg-jwt')
 
 class Login extends Controller {
+    //创建用户
     async createUser() {
         const { ctx, service } = this
         const registerUser = ctx.request.body
-        const result = ctx.service.admin.login.createUser(registerUser)
+        const result = await service.admin.login.createUser(registerUser)
         ctx.body = {
-            data: "用户注册成功"
+            data: "用户注册成功",
         }
     }
     async login() {
         const { ctx } = this
-        ctx.body = "登录"
+        //将用户的 id和 账户作为 jwt的 sign
+        const { username, password } = ctx.user
+        const token = await ctx.helper.getToken({ username, password })
+        // if (token) {
+        //     ctx.helper.success(ctx, 200, { token })
+        // } else {
+        //     ctx.helper.fail(ctx, 211, token)
+        // }
+        ctx.body = {
+            username, token
+        }
     }
 }
 
