@@ -6,5 +6,5 @@ module.exports = (app) => {
     const vertifyAuth = app.middleware.vertifyAuth();//验证用户登录是否合法的中间件（验证）
     router.post('/admin/register', vertifyUser, passwordHandle, controller.admin.login.createUser)
     router.post('/admin/login', vertifyLogin, controller.admin.login.login)
-    router.post('/admin/test', vertifyAuth, controller.admin.login.sucess)
+    router.get('/admin/test', vertifyAuth, controller.admin.login.sucess)
 }

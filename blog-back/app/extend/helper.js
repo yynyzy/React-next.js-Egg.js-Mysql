@@ -4,8 +4,7 @@ const errorTypes = require('../constants/errorType')
 module.exports = {
     getToken(options) {
         return this.app.jwt.sign(options, this.app.config.jwt.secret, {
-            expiresIn: 60 * 60 * 24,
-            algorithm: 'RS256'
+            expiresIn: 60 * 60 * 24
         });
     },
     //密码MD5加密
@@ -48,6 +47,9 @@ module.exports = {
                 message = "NOT_FOUND"
         }
         this.ctx.status = status
-        this.ctx.body = message
+        this.ctx.body = {
+            'code': status,
+            message
+        }
     }
 };

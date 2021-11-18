@@ -2,23 +2,42 @@
  * 登录界面
  */
 import React, { useState } from 'react';
-import { Card, Avatar, Input, Button, Spin } from 'antd';
+import { Card, Avatar, Input, Button, Spin, message } from 'antd';
 import {
     UserOutlined,
     KeyOutlined
 } from '@ant-design/icons';
 import './index.css'
+import { axios_post } from '../../utils/axios'
 const { Meta } = Card;
 
-export default function Login() {
+export default function Login(props) {
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    const login = () => {
+    const login = async () => {
         setIsLoading(true)
-        setTimeout(() => {
+        if (!userName || !password) {
+            message.error("用户名和密码不能为空！")
             setIsLoading(false)
-        }, 1000)
+            return false
+        }
+        let user = {
+            'username': userName,
+            'password': password
+        }
+        try {
+            const result = await axios_post('/admin/login', user)
+            console.log(result);
+            localStorage.setItem('token', result.token)
+            message.success(`欢迎加入${result.username}`)
+            setIsLoading(false)
+            props.history.push('/index')
+        } catch (error) {
+            console.log(error);
+            message.error(error.data.message)
+            setIsLoading(false)
+        }
     }
     return (
         <div className="login">

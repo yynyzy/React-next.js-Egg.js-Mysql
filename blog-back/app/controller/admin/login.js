@@ -14,16 +14,17 @@ class Login extends Controller {
     async login() {
         const { ctx } = this
         //将用户的 id和 账户作为 jwt的 sign
-        const { username, password } = ctx.user
-        const token = await ctx.helper.getToken({ username, password })
-
+        const { id, username } = ctx.user
+        const token = await ctx.helper.getToken({ id, username })
         ctx.body = {
-            username, token
+            username, token, code: '0'
         }
     }
     async sucess() {
+        const { ctx } = this
         const { user } = ctx
-        this.ctx.body = {
+        ctx.status = 200
+        ctx.body = {
             user,
             message: "用户授权成功"
         }

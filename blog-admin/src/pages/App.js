@@ -11,9 +11,8 @@ export default function App() {
       <Router>
         <Switch>
           <Route path="/login" exact component={Login} />
-          <Route path="/Admin" exact component={Admin} />
+          {/* <Route path="/admin" exact component={Admin} /> */}
           <Route path="/index" exact component={Admin} />
-          <Redirect to="/login" component={Login} />
         </Switch>
       </Router>
 
