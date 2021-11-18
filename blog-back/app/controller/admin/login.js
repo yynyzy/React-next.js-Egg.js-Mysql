@@ -16,11 +16,7 @@ class Login extends Controller {
         //将用户的 id和 账户作为 jwt的 sign
         const { username, password } = ctx.user
         const token = await ctx.helper.getToken({ username, password })
-        // if (token) {
-        //     ctx.helper.success(ctx, 200, { token })
-        // } else {
-        //     ctx.helper.fail(ctx, 211, token)
-        // }
+
         ctx.body = {
             username, token
         }

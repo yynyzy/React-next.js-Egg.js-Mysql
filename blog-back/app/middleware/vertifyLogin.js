@@ -4,7 +4,7 @@
 const errorTypes = require('../constants/errorType')
 
 module.exports = (options, app) => {
-    return async function vertifyAuth(ctx, next) {
+    return async function vertifyLogin(ctx, next) {
         const { username, password } = ctx.request.body;
         //1.判断 是否为空
         if (!username || !password) {
