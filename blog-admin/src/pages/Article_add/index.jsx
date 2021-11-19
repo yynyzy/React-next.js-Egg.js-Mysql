@@ -3,7 +3,7 @@ import './index.css';
 import { Row, Col, Input, Select, Button, DatePicker, message } from 'antd'
 
 import marked from "../../utils/marked";
-import ArticleAddRight from '../../components/ArticleAdd_Right'
+import ArticleAddLeft from '../../components/ArticleAdd_Left'
 import { axios_get } from "../../utils/axios"
 
 const { TextArea } = Input
@@ -28,7 +28,6 @@ export default function ArticleAdd(props) {
     const getArticleType = async () => {
         try {
             const result = await axios_get('/admin/articleType')
-            console.log(result);
             if (result.code == 200) {
                 setArticleType([...result.data])
             }
@@ -51,16 +50,22 @@ export default function ArticleAdd(props) {
         let html = marked(e.target.value)
         setIntroducehtml(html)
     }
+    //文章的类别切换
+    const selectTypeHandler = (value) => {
+        console.log(value);
+        setSelectType(value)
+    }
     return (
         <div>
             <Row gutter={5}>
                 <Col span={18}>
-                    <ArticleAddRight
+                    <ArticleAddLeft
                         changeContent={changeContent}
                         articleContent={articleContent}
                         articleType={articleType}
                         markdownContent={markdownContent}
                         selectedType={selectedType}
+                        selectTypeHandler={selectTypeHandler}
                     />
                 </Col>
 
@@ -88,6 +93,7 @@ export default function ArticleAdd(props) {
                         <Col span={12}>
                             <div className="date-select">
                                 <DatePicker
+                                    onChange={(date, dateString) => setShowDate(dateString)}
                                     placeholder="发布日期"
                                     size="large"
                                 />
