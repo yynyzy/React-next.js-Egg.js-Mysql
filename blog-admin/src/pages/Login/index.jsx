@@ -28,13 +28,11 @@ export default function Login(props) {
         }
         try {
             const result = await axios_post('/admin/login', user)
-            console.log(result);
             localStorage.setItem('token', result.token)
-            message.success(`欢迎加入${result.username}`)
+            message.success(`欢迎进入${result.username}的世界~`)
             setIsLoading(false)
             props.history.push('/index')
         } catch (error) {
-            console.log(error);
             message.error(error.data.message)
             setIsLoading(false)
         }

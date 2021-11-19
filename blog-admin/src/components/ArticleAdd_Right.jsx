@@ -5,7 +5,12 @@ import { Row, Col, Input, Select } from 'antd'
 const { Option } = Select;
 const { TextArea } = Input
 export default function ArticleAddRight(props) {
-    const { changeContent, articleContent, markdownContent } = props
+    const {
+        changeContent,
+        articleContent,
+        markdownContent,
+        articleType,
+        selectedType } = props
     return (
         <div className="articleAddRight">
             <Row gutter={10} style={{ marginBottom: 10 }}>
@@ -15,8 +20,8 @@ export default function ArticleAddRight(props) {
                         size="large" />
                 </Col>
                 <Col span={4}>
-                    <Select defaultValue="Sign Up" size="large">
-                        <Option value="Sign Up">视频/文章</Option>
+                    <Select defaultValue={selectedType} size="large">
+                        {articleType.map(item => <Option value={item.torder} key={item.torder}>{item.name}</Option>)}
                     </Select>
                 </Col>
             </Row>

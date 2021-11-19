@@ -5,8 +5,10 @@ class Article extends Controller {
         const { ctx, service } = this
         try {
             const result = await service.admin.article.getArticleType()
-            console.log("123");
-            ctx.body = result
+            ctx.body = {
+                code: '200',
+                data: result
+            }
         } catch (error) {
             // ctx.logger.error(error.message)
             console.log(error);

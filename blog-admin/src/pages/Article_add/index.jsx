@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './index.css';
-import { Row, Col, Input, Select, Button, DatePicker } from 'antd'
+import { Row, Col, Input, Select, Button, DatePicker, message } from 'antd'
 
 import marked from "../../utils/marked";
 import ArticleAddRight from '../../components/ArticleAdd_Right'
+import { axios_get } from "../../utils/axios"
 
 const { TextArea } = Input
 
-export default function ArticleAdd() {
+export default function ArticleAdd(props) {
     const [articleId, setArticleId] = useState(0)                       //文章的ID
     const [articleTitle, setArticleTitle] = useState('')                //文章标题
     const [articleContent, setArticleContent] = useState('')            //markdown的编辑内容
@@ -16,9 +17,28 @@ export default function ArticleAdd() {
     const [introducehtml, setIntroducehtml] = useState('等待编辑')      //简介的html内容
     const [showDate, setShowDate] = useState()                          //发布日期
     const [updateDate, setUpdateDate] = useState()                       //修改日志的日期
-    const [typeInfo, setTypeInfo] = useState([])                        // 文章类别信息
-    const [selectedType, setSelectType] = useState(1)                   //选择的文章类别
+    const [articleType, setArticleType] = useState([])                        // 文章类别信息
+    const [selectedType, setSelectType] = useState("请选择文章分类")                   //选择的文章类别
 
+    useEffect(async () => {
+        getArticleType()
+
+    }, [])
+
+    const getArticleType = async () => {
+        try {
+            const result = await axios_get('/admin/articleType')
+            console.log(result);
+            if (result.code == 200) {
+                setArticleType([...result.data])
+            }
+        } catch (error) {
+            if (error.response.status == 401) {
+                message.error("用户未授权！")
+                props.history.push('/login')
+            }
+        }
+    }
     //内容区markdown转化
     const changeContent = (e) => {
         setArticleContent(e.target.value)
@@ -38,7 +58,9 @@ export default function ArticleAdd() {
                     <ArticleAddRight
                         changeContent={changeContent}
                         articleContent={articleContent}
+                        articleType={articleType}
                         markdownContent={markdownContent}
+                        selectedType={selectedType}
                     />
                 </Col>
 

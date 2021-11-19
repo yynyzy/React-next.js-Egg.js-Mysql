@@ -23,7 +23,7 @@ class Login extends Controller {
         const { id, username } = ctx.user
         const token = await ctx.helper.getToken({ id, username })
         ctx.body = {
-            username, token, code: '0'
+            username, token
         }
     }
     async sucess() {

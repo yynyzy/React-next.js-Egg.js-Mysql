@@ -14,7 +14,7 @@ module.exports = options => {
             return ctx.helper.fail(error);
         }
 
-        const token = authorization.substring(7)
+        const token = authorization.replace("Bearer ", "")
         //2.验证token
         try {
             const result = await ctx.app.jwt.verify(token, ctx.app.config.jwt.secret);
