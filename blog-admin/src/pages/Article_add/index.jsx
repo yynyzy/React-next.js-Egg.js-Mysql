@@ -53,7 +53,6 @@ export default function ArticleAdd(props) {
     //文章的类别切换
     const selectTypeHandler = (value) => {
         setSelectType(value)
-        console.log(showDate);
     }
     //文章日期的选择
     const selectDate = (date, dateString) => {
@@ -63,8 +62,8 @@ export default function ArticleAdd(props) {
     //blog的标题的切换
     const changeArticleTitle = e => {
         setArticleTitle(e.target.value)
-        console.log(articleTitle);
     }
+    //暂存文章检查
     const saveArticle = () => {
         if (!selectedType) {
             message.error('必须选择文章类别')
