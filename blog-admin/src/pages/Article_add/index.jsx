@@ -4,6 +4,7 @@ import { Row, Col, Input, Select, Button, DatePicker, message } from 'antd'
 
 import marked from "../../utils/marked";
 import ArticleAddLeft from '../../components/ArticleAdd_Left'
+import ArticleAddRight from '../../components/ArticleAdd_Right'
 import { axios_get } from "../../utils/axios"
 
 const { TextArea } = Input
@@ -20,9 +21,8 @@ export default function ArticleAdd(props) {
     const [articleType, setArticleType] = useState([])                        // 文章类别信息
     const [selectedType, setSelectType] = useState("请选择文章分类")                   //选择的文章类别
 
-    useEffect(async () => {
+    useEffect(() => {
         getArticleType()
-
     }, [])
 
     const getArticleType = async () => {
@@ -52,8 +52,37 @@ export default function ArticleAdd(props) {
     }
     //文章的类别切换
     const selectTypeHandler = (value) => {
-        console.log(value);
         setSelectType(value)
+        console.log(showDate);
+    }
+    //文章日期的选择
+    const selectDate = (date, dateString) => {
+        setShowDate(dateString)
+        console.log(showDate);
+    }
+    //blog的标题的切换
+    const changeArticleTitle = e => {
+        setArticleTitle(e.target.value)
+        console.log(articleTitle);
+    }
+    const saveArticle = () => {
+        if (!selectedType) {
+            message.error('必须选择文章类别')
+            return false
+        } else if (!articleTitle) {
+            message.error('文章名称不能为空')
+            return false
+        } else if (!articleContent) {
+            message.error('文章内容不能为空')
+            return false
+        } else if (!introducemd) {
+            message.error('简介不能为空')
+            return false
+        } else if (!showDate) {
+            message.error('发布日期不能为空')
+            return false
+        }
+        message.success('文章发布成功~')
     }
     return (
         <div>
@@ -66,40 +95,19 @@ export default function ArticleAdd(props) {
                         markdownContent={markdownContent}
                         selectedType={selectedType}
                         selectTypeHandler={selectTypeHandler}
+                        articleTitle={articleTitle}
+                        changeArticleTitle={changeArticleTitle}
                     />
                 </Col>
 
                 <Col span={6}>
-                    <Row>
-                        <Col span={24}>
-                            <Button size="large">暂存文章</Button>&nbsp;
-                            <Button type="primary" size="large" >发布文章</Button>
-                            <br />
-                        </Col>
-                        <Col span={24}>
-                            <br />
-                            <TextArea
-                                rows={4}
-                                value={introducemd}
-                                onChange={changeIntroduce}
-                                onPressEnter={changeIntroduce}
-                                placeholder="文章简介"
-                            />
-                            <div
-                                className="introduce-html"
-                                dangerouslySetInnerHTML={{ __html: '文章简介：' + introducehtml }} >
-                            </div>
-                        </Col>
-                        <Col span={12}>
-                            <div className="date-select">
-                                <DatePicker
-                                    onChange={(date, dateString) => setShowDate(dateString)}
-                                    placeholder="发布日期"
-                                    size="large"
-                                />
-                            </div>
-                        </Col>
-                    </Row>
+                    <ArticleAddRight
+                        selectDate={selectDate}
+                        introducemd={introducemd}
+                        changeIntroduce={changeIntroduce}
+                        introducehtml={introducehtml}
+                        saveArticle={saveArticle}
+                    />
                 </Col>
             </Row>
         </div>

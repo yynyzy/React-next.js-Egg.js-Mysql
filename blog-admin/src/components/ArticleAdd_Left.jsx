@@ -11,14 +11,19 @@ export default function ArticleAddLeft(props) {
         markdownContent,
         articleType,
         selectedType,
-        selectTypeHandler } = props
+        selectTypeHandler,
+        articleTitle,
+        changeArticleTitle
+    } = props
 
     return (
         <div className="ArticleAddLeft">
             <Row gutter={10} style={{ marginBottom: 10 }}>
-                <Col span={20}>
+                <Col span={16}>
                     <Input
+                        value={articleTitle}
                         placeholder="博客标题"
+                        onChange={(e) => changeArticleTitle(e)}
                         size="large" />
                 </Col>
                 <Col span={4}>
