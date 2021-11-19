@@ -7,6 +7,7 @@ let baseURL = API_URL
 //     baseURL = '开发的地址'
 // }
 
+
 // 拦截器
 axios.interceptors.response.use((response) => {
     return response
@@ -14,6 +15,10 @@ axios.interceptors.response.use((response) => {
     return Promise.reject(error)
 })
 axios.interceptors.request.use((config) => {
+    const token = localStorage.getItem('token')
+    if (token) {
+        config.headers.authorization = token
+    }
     config.baseURL = baseURL
     config.timeout = 10000
     return config;
