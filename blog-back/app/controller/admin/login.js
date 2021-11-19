@@ -6,10 +6,16 @@ class Login extends Controller {
     async createUser() {
         const { ctx, service } = this
         const registerUser = ctx.request.body
-        const result = await service.admin.login.createUser(registerUser)
-        ctx.body = {
-            data: "用户注册成功",
+        try {
+            const result = await service.admin.login.createUser(registerUser)
+            ctx.body = {
+                data: "用户注册成功",
+            }
+        } catch (error) {
+            // ctx.logger.error(error.message)
+            console.log(error);
         }
+
     }
     async login() {
         const { ctx } = this

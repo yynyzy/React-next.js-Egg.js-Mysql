@@ -8,6 +8,7 @@ module.exports = options => {
     return async function vertifyAuth(ctx, next) {
         //1.获取 token
         const authorization = ctx.headers.authorization
+        console.log(authorization);
         if (!authorization) {
             const error = errorTypes.UNAUTHORIZED
             return ctx.helper.fail(error);
@@ -21,6 +22,7 @@ module.exports = options => {
             ctx.user = result
             await next()
         } catch (err) {
+            console.log(err);
             const error = errorTypes.UNAUTHORIZED
             return ctx.helper.fail(error);
         }

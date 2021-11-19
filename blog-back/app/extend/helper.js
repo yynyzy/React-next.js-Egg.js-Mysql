@@ -4,7 +4,7 @@ const errorTypes = require('../constants/errorType')
 module.exports = {
     getToken(options) {
         return this.app.jwt.sign(options, this.app.config.jwt.secret, {
-            expiresIn: 60 * 60 * 24
+            expiresIn: '12h'
         });
     },
     //密码MD5加密
