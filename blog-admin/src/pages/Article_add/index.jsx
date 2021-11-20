@@ -129,7 +129,6 @@ export default function ArticleAdd(props) {
                         changeArticleTitle={changeArticleTitle}
                     />
                 </Col>
-
                 <Col span={6}>
                     <ArticleAddRight
                         selectDate={selectDate}

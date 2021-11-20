@@ -21,10 +21,8 @@ class Article extends Controller {
         const { id } = ctx.user
         let dataProps = ctx.request.body
         dataProps.auth_id = id
-        console.log(dataProps);
         try {
             const result = await service.admin.article.addArticle(dataProps)
-            console.log(result);
             const insertSuccess = result.affectedRows === 1
             const insertId = result.insertId
             this.ctx.body = {
@@ -36,6 +34,24 @@ class Article extends Controller {
             // ctx.logger.error(error.message)
             console.log(error);
         }
+    }
+
+    //修改文章
+    async updateArticle() {
+        const { ctx, service } = this
+        const { id } = ctx.user
+        let dataProps = ctx.request.body
+        try {
+            const result = await service.admin.article.updateArticle(dataProps, id)
+            const insertSuccess = result.affectedRows === 1
+            this.ctx.body = {
+                code: '200',
+                isScuccess: insertSuccessd
+            }
+        } catch (error) {
+            // ctx.logger.error(error.message)
+            console.log(error);
+        } d
     }
 }
 

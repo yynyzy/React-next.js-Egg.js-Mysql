@@ -12,7 +12,7 @@ export default function ArticleAddRight(props) {
     } = props
 
     return (
-        <div className="ArticleAddRight">
+        <>
             <Row>
                 <Col span={24}>
                     <Button size="large" >暂存文章</Button>&nbsp;
@@ -43,6 +43,6 @@ export default function ArticleAddRight(props) {
                     </div>
                 </Col>
             </Row>
-        </div>
+        </>
     )
 }

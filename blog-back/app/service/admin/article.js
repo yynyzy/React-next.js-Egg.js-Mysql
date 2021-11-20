@@ -25,6 +25,12 @@ class Article extends Service {
         const result = await this.app.mysql.query(statement, [auth_id, type_id, title, content, introduce, addTime, view_count])
         return result
     }
+    //修改文章
+    async updateArticle(dataProps, id) {
+        const statement = `
+
+        `
+    }
 }
 
 module.exports = Article

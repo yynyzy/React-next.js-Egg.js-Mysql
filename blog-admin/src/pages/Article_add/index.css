@@ -1,15 +1,16 @@
 .markdown-content{
     font-size:16px !important;
-    max-height: 745px;
+    /* max-height: 745px; */
+    max-height: 80vh!important;
 }
 .show-html{
     padding:10px;
     border:1px solid #ddd;
     border-radius: 5px;
     font-size:16px;
-    height: 745px;
     background-color: #f0f0f0;
     overflow: auto;
+    height: 80vh;
 }
 
 .show-html h1{
@@ -51,8 +52,8 @@
     border:1px solid #ddd;
     border-radius: 5px;
     font-size:16px;
-
     background-color: #f0f0f0;
+    overflow: auto;
 }
 
 
@@ -89,6 +90,7 @@
     border-left:4px solid #cbcbcb ;
     padding: 10px 10px 10px 30px; 
     background-color: #f8f8f8;
+
 }
 .date-select{
     margin-top:10px;

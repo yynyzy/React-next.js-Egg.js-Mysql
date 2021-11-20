@@ -17,7 +17,7 @@ export default function ArticleAddLeft(props) {
     } = props
 
     return (
-        <div className="ArticleAddLeft">
+        <>
             <Row gutter={10} style={{ marginBottom: 10 }}>
                 <Col span={16}>
                     <Input
@@ -51,6 +51,6 @@ export default function ArticleAddLeft(props) {
                     </div>
                 </Col>
             </Row>
-        </div>
+        </>
     )
 }
