@@ -79,7 +79,6 @@ export default function ArticleAdd(props) {
             return false
         }
         commitArticle()
-        message.success('文章发布成功~')
     }
     //上传文章
     const commitArticle = async () => {
@@ -91,22 +90,30 @@ export default function ArticleAdd(props) {
             introduce: introducemd,
             addTime: (new Date(datetext).getTime()) / 1000,
         }
-        console.log(dataProps);
         try {
-            if (articleId == 0) {
-                //模仿设置一个浏览量
+            if (articleId === 0) {
+                //随机设置一个浏览量
                 dataProps.view_count = Math.ceil(Math.random() * 100) + 1000
                 const result = await axios_post('/admin/addArticle', dataProps)
-                console.log(result)
+                //文章在数据库中的id保存一下，方便修改
                 setArticleId(result.insertId)
                 if (result.isScuccess) {
-                    message.success('文章保存成功')
+                    message.success('文章发布成功')
                 } else {
                     message.error('文章保存失败');
                 }
+            } else {
+                dataProps.articleId = articleId
+                const result = await axios_post('/admin/updateArticle', dataProps)
+                if (result.isScuccess) {
+                    message.success('文章修改成功')
+                } else {
+                    message.error('文章修改失败');
+                }
             }
-        } catch (error) {
-            if (error.response.status == 401) {
+        }
+        catch (error) {
+            if (error.status === 401) {
                 message.error("用户未授权！")
                 props.history.push('/login')
             }

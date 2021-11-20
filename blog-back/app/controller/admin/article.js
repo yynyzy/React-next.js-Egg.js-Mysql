@@ -39,19 +39,18 @@ class Article extends Controller {
     //修改文章
     async updateArticle() {
         const { ctx, service } = this
-        const { id } = ctx.user
         let dataProps = ctx.request.body
         try {
-            const result = await service.admin.article.updateArticle(dataProps, id)
+            const result = await service.admin.article.updateArticle(dataProps)
             const insertSuccess = result.affectedRows === 1
             this.ctx.body = {
                 code: '200',
-                isScuccess: insertSuccessd
+                isScuccess: insertSuccess
             }
         } catch (error) {
             // ctx.logger.error(error.message)
             console.log(error);
-        } d
+        }
     }
 }
 

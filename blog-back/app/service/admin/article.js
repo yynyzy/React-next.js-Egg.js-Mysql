@@ -27,9 +27,18 @@ class Article extends Service {
     }
     //修改文章
     async updateArticle(dataProps, id) {
+        const { type_id, title, content, introduce, addTime, articleId } = dataProps
         const statement = `
-
+        UPDATE blog_article 
+        SET article_type_id =?,
+        article_title=?,
+        article_content=?,
+        article_introduce=?,
+        article_addTime=?
+         WHERE blog_article.id = ?
         `
+        const result = await this.app.mysql.query(statement, [type_id, title, content, introduce, addTime, articleId])
+        return result
     }
 }
 
