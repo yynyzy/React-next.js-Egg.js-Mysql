@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Row, Col, Input, Button, DatePicker } from 'antd'
 
 const { TextArea } = Input
@@ -15,8 +15,8 @@ export default function ArticleAddRight(props) {
         <div className="ArticleAddRight">
             <Row>
                 <Col span={24}>
-                    <Button size="large" onClick={saveArticle}>暂存文章</Button>&nbsp;
-                    <Button type="primary" size="large">发布文章</Button>
+                    <Button size="large" >暂存文章</Button>&nbsp;
+                    <Button type="primary" size="large" onClick={saveArticle}>发布文章</Button>
                     <br />
                 </Col>
                 <Col span={24}>

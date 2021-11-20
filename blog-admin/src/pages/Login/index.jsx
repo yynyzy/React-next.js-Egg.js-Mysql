@@ -33,7 +33,8 @@ export default function Login(props) {
             setIsLoading(false)
             props.history.push('/index')
         } catch (error) {
-            message.error(error.data.message)
+            console.log(error);
+            message.error("登录失败")
             setIsLoading(false)
         }
     }
