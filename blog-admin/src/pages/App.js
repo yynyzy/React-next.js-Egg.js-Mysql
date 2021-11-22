@@ -13,7 +13,7 @@ export default function App() {
           <Route path="/login" exact component={Login} />
           {/* <Route path="/admin" exact component={Admin} /> */}
           <Route path="/index" exact component={Admin} />
-          <Redirect from="/*" to="/login" />
+          {/* <Redirect from="/*" to="/login" /> */}
         </Switch>
       </Router>
 

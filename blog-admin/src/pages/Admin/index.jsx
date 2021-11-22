@@ -23,8 +23,8 @@ export default function Admin(props) {
     };
     //控制切换列表取哪个页面
     const handleClickArticle = e => {
-        console.log(e);
-        console.log(e.item.props)
+        console.log("1", e);
+        console.log("1s", e.item.props)
         if (e.key == 'ArtAdd') {
             props.history.push('/index/add')
         } else {
