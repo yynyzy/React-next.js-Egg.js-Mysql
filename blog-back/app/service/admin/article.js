@@ -40,6 +40,23 @@ class Article extends Service {
         const result = await this.app.mysql.query(statement, [type_id, title, content, introduce, addTime, articleId])
         return result
     }
+    //获取文章列表
+    async getArticleList(userId) {
+        console.log(userId);
+        const statement = `
+        SELECT  
+        art.id    		                        Id,
+        btype.type_name 						typename,
+        art.article_title     					title,
+        art.article_introduce 					introduce,
+        FROM_UNIXTIME(art.article_addTime,'%Y-%m-%d' )    addTime
+        FROM blog_article art 
+        LEFT JOIN blog_type btype ON article_type_id = btype.id
+        WHERE article_author_id = ?
+        `
+        const result = await this.app.mysql.query(statement, [userId])
+        return result
+    }
 }
 
 module.exports = Article

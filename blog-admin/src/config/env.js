@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:7001'
+const API_URL = 'http://localhost:7002'
 
 export {
     API_URL

@@ -52,6 +52,14 @@ class Article extends Controller {
             console.log(error);
         }
     }
+    //获取文章列表
+    async getArticleList() {
+        const { ctx, service } = this
+        const { id } = ctx.user
+        const result = await service.admin.article.getArticleList(id)
+        console.log(result);
+        this.ctx.body = { data: result }
+    }
 }
 
 module.exports = Article
