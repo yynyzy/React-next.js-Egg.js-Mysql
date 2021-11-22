@@ -9,4 +9,6 @@ module.exports = app => {
     router.post('/admin/updateArticle', vertifyAuth, controller.admin.article.updateArticle)
     //获取文章列表
     router.get('/admin/getArticleList', vertifyAuth, controller.admin.article.getArticleList)
+    //删除文章
+    router.post('/admin/delArticle/:articleId', vertifyAuth, controller.admin.article.delArticle)
 }

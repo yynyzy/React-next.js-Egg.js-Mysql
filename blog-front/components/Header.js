@@ -21,7 +21,7 @@ export default function Header(props) {
     }, [])
 
     const toBar = (e) => {
-        if (e.key == 0) {
+        if (e.key === 0) {
             Router.push('/')
         } else {
             Router.push(`/list?id=${e.key}`)

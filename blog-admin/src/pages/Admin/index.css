@@ -5,7 +5,6 @@
   }
   .site-layout-background {
     background: #fff;
-    padding: 24px;
-    /* padding: 10px 10px 10px 0px; */
+    padding: 10px 10px 10px 0px;
     min-height: 360px
   }

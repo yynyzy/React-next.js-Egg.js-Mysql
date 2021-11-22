@@ -1,7 +1,7 @@
 .markdown-content{
     font-size:16px !important;
     /* max-height: 745px; */
-    max-height: 80vh!important;
+    max-height: 79vh!important;
 }
 .show-html{
     padding:10px;
@@ -10,7 +10,7 @@
     font-size:16px;
     background-color: #f0f0f0;
     overflow: auto;
-    height: 80vh;
+    height: 79vh;
 }
 
 .show-html h1{

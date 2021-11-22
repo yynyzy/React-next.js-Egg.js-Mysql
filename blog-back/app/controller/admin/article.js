@@ -57,6 +57,14 @@ class Article extends Controller {
         const { ctx, service } = this
         const { id } = ctx.user
         const result = await service.admin.article.getArticleList(id)
+        this.ctx.body = { data: result }
+    }
+
+    //删除文章
+    async delArticle() {
+        const { ctx, service } = this
+        const { articleId } = ctx.params
+        const result = await service.admin.article.delArticle(articleId)
         console.log(result);
         this.ctx.body = { data: result }
     }

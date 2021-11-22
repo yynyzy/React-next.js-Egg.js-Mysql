@@ -1,16 +1,11 @@
-// import React, { useState, useEffect } from 'react';
-// import './index.css'
-// import { List, Row, Col, Modal, message, Button, Switch } from 'antd';
-// import { axios_get, axios_post } from "../../utils/axios"
-// const { confirm } = Modal;
-
 import React, { useState, useEffect } from 'react';
-import { Table, Button } from 'antd';
+import { Table, Button, Modal, message } from 'antd';
 import './index.css'
 
 import { axios_get, axios_post } from "../../utils/axios"
 
-const { Column, ColumnGroup } = Table;
+const { Column } = Table;
+const { confirm } = Modal;
 export default function ArticleList(props) {
 
     const [articleLists, setArticleLists] = useState([])
@@ -21,70 +16,66 @@ export default function ArticleList(props) {
     const getArticleList = async () => {
         try {
             const result = await axios_get('/admin/getArticleList')
-            console.log(result);
             setArticleLists([...result.data]);
         } catch (error) {
             console.log(error);
         }
-
     }
 
+    //删除文章的方法
+    const delArticle = (articleId) => {
+        confirm({
+            title: '确定要删除当前文章吗?',
+            content: '亲，如果删除无法恢复哦~',
+            onOk() {
+                try {
+                    const res = deleteArticleById(articleId)
+                    if (res) {
+                        message.success('文章删除成功')
+                    } else {
+                        message.error('文章删除失败')
+                    }
+                    const _articleLists = articleLists.filter(item => item.Id !== articleId);
+                    setArticleLists([..._articleLists]);
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+            onCancel() {
+                message.success('没有任何改变')
+            },
+        });
+    }
 
-    const data = [
-        {
-            key: '1',
-            firstName: 'John',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['nice', 'developer'],
-        },
-        {
-            key: '2',
-            firstName: 'Jim',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-            tags: ['loser'],
-        },
-        {
-            key: '3',
-            firstName: 'Joe',
-            age: 32,
-            address: 'Sidney No. 1 Lake Park',
-            tags: ['cool', 'teacher'],
-        },
-    ];
-
-    const rowSelection = {
-        onChange: (selectedRowKeys, selectedRows) => {
-            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    const deleteArticleById = async (articleId) => {
+        const result = await axios_post(`/admin/delArticle/${articleId}`)
+        if (result.affectedRows === 1) {
+            return true
+        } else {
+            return false
         }
-        // ,getCheckboxProps: (record) => ({
-        //     disabled: record.name === 'Disabled User',
-        //     name: record.name,
-        // }),
-    };
+    }
+
     return (
-        <div>
-            <Table dataSource={articleLists}>
+        <div className="article-list">
+            <Table dataSource={articleLists} pagination={{ pageSize: 10 }} scroll={{ y: "73vh" }} >
                 <Column title="标题" dataIndex="title" key="title" />
                 <Column title="类别" dataIndex="typename" key="typename" />
                 <Column title="发布时间" dataIndex="addTime" key="addTime" />
                 <Column title="浏览量" dataIndex="view_count" key="view_count" />
-                <Column title="操作" dataIndex="addTime" key="addTime" />
                 <Column
                     title="操作"
-
-                    key="tags"
-                    render={() => (
+                    dataIndex="Id"
+                    render={(Id) => (
                         <>
                             <Button type="primary" style={{ marginRight: "10px" }}>修改</Button>
-                            <Button >删除</Button>
+                            <Button onClick={() => delArticle(Id)}>删除</Button>
                         </>
                     )}
                 />
 
             </Table>
-        </div>
+        </div >
     );
 
 

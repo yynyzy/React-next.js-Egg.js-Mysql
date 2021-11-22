@@ -26,11 +26,11 @@ export default function ArticleAdd(props) {
     const getArticleType = async () => {
         try {
             const result = await axios_get('/admin/articleType')
-            if (result.code == 200) {
+            if (result.code === 200) {
                 setArticleType([...result.data])
             }
         } catch (error) {
-            if (error.response.status == 401) {
+            if (error.response.status === 401) {
                 message.error("用户未授权！")
                 props.history.push('/login')
             }
@@ -122,7 +122,7 @@ export default function ArticleAdd(props) {
 
     }
     return (
-        <div>
+        <>
             <Row gutter={5}>
                 <Col span={18}>
                     <ArticleAddLeft
@@ -146,7 +146,7 @@ export default function ArticleAdd(props) {
                     />
                 </Col>
             </Row>
-        </div>
+        </>
     )
 
 

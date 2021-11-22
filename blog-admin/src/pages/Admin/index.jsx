@@ -23,7 +23,7 @@ export default function Admin(props) {
     };
     //控制切换列表取哪个页面
     const handleClickArticle = e => {
-        if (e.key == 'ArtAdd') {
+        if (e.key === 'ArtAdd') {
             props.history.push('/index/add')
         } else {
             props.history.push('/index/list')
@@ -70,7 +70,7 @@ export default function Admin(props) {
                         </div>
                     </div>
                 </Content>
-                <Footer style={{ textAlign: 'center', paddingTop: 10, paddingBottom: 10 }}>Ant Design ©2018 Created by Ant UED</Footer>
+                <Footer style={{ textAlign: 'center', paddingTop: 5, paddingBottom: 5 }}>Ant Design ©2018 Created by Ant UED</Footer>
             </Layout>
         </Layout>
     );
