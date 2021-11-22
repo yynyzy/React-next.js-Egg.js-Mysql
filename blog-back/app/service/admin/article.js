@@ -49,7 +49,8 @@ class Article extends Service {
         btype.type_name 						typename,
         art.article_title     					title,
         art.article_introduce 					introduce,
-        FROM_UNIXTIME(art.article_addTime,'%Y-%m-%d' )    addTime
+        FROM_UNIXTIME(art.article_addTime,'%Y-%m-%d' )    addTime,
+        art.article_view_count                  view_count
         FROM blog_article art 
         LEFT JOIN blog_type btype ON article_type_id = btype.id
         WHERE article_author_id = ?
