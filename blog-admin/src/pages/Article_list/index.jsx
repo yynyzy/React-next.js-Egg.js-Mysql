@@ -7,7 +7,6 @@ import { axios_get, axios_post } from "../../utils/axios"
 const { Column } = Table;
 const { confirm } = Modal;
 export default function ArticleList(props) {
-
     const [articleLists, setArticleLists] = useState([])
     useEffect(() => {
         getArticleList()

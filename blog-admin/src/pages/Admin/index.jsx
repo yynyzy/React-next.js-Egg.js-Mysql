@@ -3,7 +3,7 @@
  */
 import React, { useState } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import { Route, Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import {
     PieChartOutlined,
     DesktopOutlined,
@@ -13,7 +13,7 @@ import ArtAdd from '../Article_add'
 import ArtList from '../Article_list'
 
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 export default function Admin(props) {

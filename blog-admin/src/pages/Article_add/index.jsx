@@ -15,17 +15,17 @@ export default function ArticleAdd(props) {
     const [introducemd, setIntroducemd] = useState()                   //简介的markdown内容
     const [introducehtml, setIntroducehtml] = useState('等待编辑')      //简介的html内容
     const [showDate, setShowDate] = useState()                          //发布日期
-    const [updateDate, setUpdateDate] = useState()                       //修改日志的日期
-    const [articleType, setArticleType] = useState([])                        // 文章类别信息
-    const [selectedType, setSelectType] = useState("请选择文章类别")                   //选择的文章类别
+    // const [updateDate, setUpdateDate] = useState()                  //修改日志的日期(以后使用现在用不到)
+    const [articleType, setArticleType] = useState([])                 // 文章类别信息
+    const [selectedType, setSelectType] = useState("请选择文章类别")    //选择的文章类别
 
     useEffect(async () => {
         getArticleType()
         //下面是从列表修改处跳转过来
         const { articleId } = props.match.params
-        const data = props.location.state.data[0]
         if (articleId) {
             try {
+                const data = props.location.state.data[0]
                 const { content } = await axios_get(`/admin/getArticleByIdToUpdate/${articleId}`)
                 data.content = content
                 console.log(data);

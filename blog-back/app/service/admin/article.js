@@ -56,7 +56,6 @@ class Article extends Service {
         WHERE article_author_id = ?
         `
         const result = await this.app.mysql.query(statement, [userId])
-        console.log(result);
         return result
     }
     //删除文章
