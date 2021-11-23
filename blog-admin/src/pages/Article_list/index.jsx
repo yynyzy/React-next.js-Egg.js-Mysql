@@ -63,8 +63,12 @@ export default function ArticleList(props) {
             title: '确定要修改当前文章吗?',
             onOk() {
                 try {
+                    const data = articleLists.filter((item) => item.Id === articleId)
+                    const content = await axios_get('//admin/getArticleByIdToUpdate/articleId')
+                    data.content = content
+                    console.log(data);
                     props.history.push(`/index/add/${articleId}`,
-                        { state: [articleLists] }
+                        { state: [data] }
                     )
                 } catch (error) {
                     console.log(error);
