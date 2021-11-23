@@ -72,8 +72,8 @@ class Article extends Controller {
     //根据list中的文章修改指定Id的文章内容
     async getArticleByIdToUpdate() {
         const { ctx, service } = this
-        let { id } = ctx.params
-        const result = await service.admin.article.getArticleByIdToUpdate(id)
+        let { articleId } = ctx.params
+        const result = await service.admin.article.getArticleByIdToUpdate(articleId)
         this.ctx.body = { data: result }
     }
 }

@@ -65,7 +65,7 @@ export default function Admin(props) {
                         <div>
                             <Route path='/index/' exact component={ArtAdd} />
                             <Route path="/index/add/" exact component={ArtAdd} />
-                            <Route path="/index/add/:id" exact component={ArtAdd} />
+                            <Route path="/index/add/:articleId" exact component={ArtAdd} />
                             <Route path="/index/list/" component={ArtList} />
                         </div>
                     </div>

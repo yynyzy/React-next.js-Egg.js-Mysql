@@ -16,6 +16,7 @@ export default function ArticleList(props) {
     const getArticleList = async () => {
         try {
             const result = await axios_get('/admin/getArticleList')
+            console.log(result);
             setArticleLists([...result.data]);
         } catch (error) {
             console.log(error);
@@ -46,7 +47,7 @@ export default function ArticleList(props) {
             },
         });
     }
-
+    //删除指定文章
     const deleteArticleById = async (articleId) => {
         const result = await axios_post(`/admin/delArticle/${articleId}`)
         if (result.affectedRows === 1) {
@@ -56,6 +57,13 @@ export default function ArticleList(props) {
         }
     }
 
+    //根据list中的文章修改指定Id的文章内容
+    const updateArticleById = (articleId, checked) => {
+        props.history.push(`/index/add/${articleId}`,
+            { state: [articleLists] }
+        )
+
+    }
     return (
         <div className="article-list">
             <Table dataSource={articleLists} pagination={{ pageSize: 10 }} scroll={{ y: "73vh" }} >
@@ -68,7 +76,7 @@ export default function ArticleList(props) {
                     dataIndex="Id"
                     render={(Id) => (
                         <>
-                            <Button type="primary" style={{ marginRight: "10px" }}>修改</Button>
+                            <Button type="primary" style={{ marginRight: "10px" }} onClick={() => updateArticleById(Id)}>修改</Button>
                             <Button onClick={() => delArticle(Id)}>删除</Button>
                         </>
                     )}
