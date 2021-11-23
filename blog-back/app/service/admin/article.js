@@ -40,7 +40,7 @@ class Article extends Service {
         const result = await this.app.mysql.query(statement, [type_id, title, content, introduce, addTime, articleId])
         return result
     }
-    //获取文章列表
+    //根据登录用户的 ID 他的获取文章列表
     async getArticleList(userId) {
         const statement = `
         SELECT  
@@ -68,7 +68,10 @@ class Article extends Service {
     //根据list中的文章修改指定Id的文章
     async getArticleByIdToUpdate(articleId) {
         const statement = `
-        
+        SELECT  
+        article_content 					content
+        FROM blog_article
+        WHERE blog_article.id = ?
         `
         const result = await this.app.mysql.query(statement, [articleId])
         return result

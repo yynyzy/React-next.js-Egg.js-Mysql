@@ -52,7 +52,7 @@ class Article extends Controller {
             console.log(error);
         }
     }
-    //获取文章列表
+    //根据登录用户的 ID 他的获取文章列表
     async getArticleList() {
         const { ctx, service } = this
         const { id } = ctx.user

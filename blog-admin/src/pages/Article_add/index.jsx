@@ -21,6 +21,12 @@ export default function ArticleAdd(props) {
 
     useEffect(() => {
         getArticleType()
+        console.log("1", props.match);
+        console.log("2", props.location);
+        const { articleId } = props.match.params
+        if (articleId) {
+            getArticleByIdToUpdate()
+        }
     }, [])
     //获取文章分类
     const getArticleType = async () => {
@@ -121,6 +127,20 @@ export default function ArticleAdd(props) {
 
 
     }
+
+    //从文章列表跳转过来进行修改
+    const getArticleByIdToUpdate = (res) => {
+        setArticleTitle(res.data.data[0].title)
+        setArticleContent(res.data.data[0].article_content)
+        let html = marked(res.data.data[0].article_content)
+        setMarkdownContent(html)
+        setIntroducemd(res.data.data[0].introduce)
+        let tmpInt = marked(res.data.data[0].introduce)
+        setIntroducehtml(tmpInt)
+        setShowDate(res.data.data[0].addTime)
+        setSelectType(res.data.data[0].typeId)
+    }
+
     return (
         <>
             <Row gutter={5}>

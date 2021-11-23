@@ -43,7 +43,7 @@ export default function ArticleList(props) {
                 }
             },
             onCancel() {
-                message.success('没有任何改变')
+                message.success('取消删除')
             },
         });
     }
@@ -58,10 +58,23 @@ export default function ArticleList(props) {
     }
 
     //根据list中的文章修改指定Id的文章内容
-    const updateArticleById = (articleId, checked) => {
-        props.history.push(`/index/add/${articleId}`,
-            { state: [articleLists] }
-        )
+    const updateArticleById = (articleId) => {
+        confirm({
+            title: '确定要修改当前文章吗?',
+            onOk() {
+                try {
+                    props.history.push(`/index/add/${articleId}`,
+                        { state: [articleLists] }
+                    )
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+            onCancel() {
+                message.success('取消修改')
+            },
+        });
+
 
     }
     return (
