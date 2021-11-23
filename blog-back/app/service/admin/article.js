@@ -57,11 +57,18 @@ class Article extends Service {
         const result = await this.app.mysql.query(statement, [userId])
         return result
     }
-
     //删除文章
     async delArticle(articleId) {
         const statement = `
         DELETE FROM blog_article WHERE id = ?;
+        `
+        const result = await this.app.mysql.query(statement, [articleId])
+        return result
+    }
+    //根据list中的文章修改指定Id的文章
+    async getArticleByIdToUpdate(articleId) {
+        const statement = `
+        
         `
         const result = await this.app.mysql.query(statement, [articleId])
         return result

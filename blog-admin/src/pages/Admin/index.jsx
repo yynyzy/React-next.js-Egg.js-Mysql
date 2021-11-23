@@ -36,7 +36,7 @@ export default function Admin(props) {
             <Sider collapsible collapsed={collapse} onCollapse={onCollapse}>
                 <div className="logo" />
                 <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                    <Menu.Item key="1" icon={<PieChartOutlined />}>
+                    <Menu.Item key="1" icon={<PieChartOutlined />} onClick={() => { props.history.push('/index/add') }}>
                         工作台
                     </Menu.Item>
                     <SubMenu

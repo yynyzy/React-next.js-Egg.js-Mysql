@@ -36,7 +36,7 @@ class Article extends Controller {
         }
     }
 
-    //修改文章
+    //添加文章后直接修改当前文章
     async updateArticle() {
         const { ctx, service } = this
         let dataProps = ctx.request.body
@@ -66,6 +66,14 @@ class Article extends Controller {
         const { articleId } = ctx.params
         const result = await service.admin.article.delArticle(articleId)
         console.log(result);
+        this.ctx.body = { data: result }
+    }
+
+    //根据list中的文章修改指定Id的文章内容
+    async getArticleByIdToUpdate() {
+        const { ctx, service } = this
+        let { id } = ctx.params
+        const result = await service.admin.article.getArticleByIdToUpdate(id)
         this.ctx.body = { data: result }
     }
 }
