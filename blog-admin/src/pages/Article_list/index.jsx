@@ -64,11 +64,8 @@ export default function ArticleList(props) {
             onOk() {
                 try {
                     const data = articleLists.filter((item) => item.Id === articleId)
-                    const content = await axios_get('//admin/getArticleByIdToUpdate/articleId')
-                    data.content = content
-                    console.log(data);
                     props.history.push(`/index/add/${articleId}`,
-                        { state: [data] }
+                        { data }
                     )
                 } catch (error) {
                     console.log(error);

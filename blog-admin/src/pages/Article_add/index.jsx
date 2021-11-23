@@ -19,14 +19,21 @@ export default function ArticleAdd(props) {
     const [articleType, setArticleType] = useState([])                        // 文章类别信息
     const [selectedType, setSelectType] = useState("请选择文章类别")                   //选择的文章类别
 
-    useEffect(() => {
+    useEffect(async () => {
         getArticleType()
-        console.log("1", props.match);
-        console.log("2", props.location);
+        //下面是从列表修改处跳转过来
         const { articleId } = props.match.params
-        const { articleLists } = props.location.state
+        const data = props.location.state.data[0]
         if (articleId) {
-            getArticleByIdToUpdate(articleLists)
+            try {
+                const { content } = await axios_get(`/admin/getArticleByIdToUpdate/${articleId}`)
+                data.content = content
+                console.log(data);
+                setArticleId(articleId)
+                getArticleByIdToUpdate(data)
+            } catch (error) {
+                console.log(error);
+            }
         }
     }, [])
     //获取文章分类
@@ -130,16 +137,16 @@ export default function ArticleAdd(props) {
     }
 
     //从文章列表跳转过来进行修改
-    const getArticleByIdToUpdate = (articleLists) => {
-        setArticleTitle(articleLists.title)
-        setArticleContent(articleLists.data.data[0].article_content)
-        let html = marked(articleLists.data.data[0].article_content)
+    const getArticleByIdToUpdate = (data) => {
+        setArticleTitle(data.title)
+        setArticleContent(data.content)
+        let html = marked(data.content)
         setMarkdownContent(html)
-        setIntroducemd(articleLists.data.data[0].introduce)
-        let tmpInt = marked(articleLists.data.data[0].introduce)
+        setIntroducemd(data.introduce)
+        let tmpInt = marked(data.introduce)
         setIntroducehtml(tmpInt)
-        setShowDate(articleLists.data.data[0].addTime)
-        setSelectType(articleLists.data.data[0].typeId)
+        setShowDate(data.addTime)
+        setSelectType(data.typeId)
     }
 
     return (

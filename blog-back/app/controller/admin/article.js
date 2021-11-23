@@ -57,7 +57,7 @@ class Article extends Controller {
         const { ctx, service } = this
         const { id } = ctx.user
         const result = await service.admin.article.getArticleList(id)
-        this.ctx.body = { data: result }
+        ctx.body = { data: result }
     }
 
     //删除文章
@@ -74,7 +74,7 @@ class Article extends Controller {
         const { ctx, service } = this
         let { articleId } = ctx.params
         const result = await service.admin.article.getArticleByIdToUpdate(articleId)
-        this.ctx.body = { data: result }
+        ctx.body = result[0]
     }
 }
 

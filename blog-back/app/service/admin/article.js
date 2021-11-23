@@ -45,6 +45,7 @@ class Article extends Service {
         const statement = `
         SELECT  
         art.id    		                        Id,
+        art.article_type_id                     typeId,
         btype.type_name 						typename,
         art.article_title     					title,
         art.article_introduce 					introduce,
@@ -55,6 +56,7 @@ class Article extends Service {
         WHERE article_author_id = ?
         `
         const result = await this.app.mysql.query(statement, [userId])
+        console.log(result);
         return result
     }
     //删除文章

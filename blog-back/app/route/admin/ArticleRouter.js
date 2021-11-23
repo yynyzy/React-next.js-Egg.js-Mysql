@@ -12,5 +12,5 @@ module.exports = app => {
     //删除文章
     router.post('/admin/delArticle/:articleId', vertifyAuth, controller.admin.article.delArticle)
     //根据list中的文章修改指定Id的文章内容
-    router.post('/admin/getArticleByIdToUpdate/:articleId', vertifyAuth, controller.admin.article.delArticle)
+    router.get('/admin/getArticleByIdToUpdate/:articleId', vertifyAuth, controller.admin.article.getArticleByIdToUpdate)
 }
