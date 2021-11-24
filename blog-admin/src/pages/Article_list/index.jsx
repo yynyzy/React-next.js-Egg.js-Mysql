@@ -15,7 +15,6 @@ export default function ArticleList(props) {
     const getArticleList = async () => {
         try {
             const result = await axios_get('/admin/getArticleList')
-            console.log(result);
             setArticleLists([...result.data]);
         } catch (error) {
             console.log(error);

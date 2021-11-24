@@ -27,7 +27,7 @@ export default function ArticleAddLeft(props) {
                         size="large" />
                 </Col>
                 <Col span={4}>
-                    <Select defaultValue={selectedType} size="large" onChange={selectTypeHandler}>
+                    <Select value={selectedType} size="large" onChange={selectTypeHandler}>
                         {articleType.map(item => <Option value={item.torder} key={item.torder}>{item.name}</Option>)}
                     </Select>
                 </Col>

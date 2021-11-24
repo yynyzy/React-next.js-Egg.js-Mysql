@@ -7,7 +7,7 @@ import {
 
 
 export default function DetailRight(props) {
-    const { markdown, viewCount, title, createTime, typeName } = props
+    const { markdown, viewCount, title, addTime, typeName } = props
     return (
         <div>
             <div className="bread-div">
@@ -24,7 +24,7 @@ export default function DetailRight(props) {
                 </div>
 
                 <div className="list-icon center">
-                    <span><CalendarOutlined />{createTime}</span>
+                    <span><CalendarOutlined />{addTime}</span>
                     <span><FolderOpenOutlined /> {typeName}</span>
                     <span><FireOutlined /> {viewCount}人</span>
                 </div>

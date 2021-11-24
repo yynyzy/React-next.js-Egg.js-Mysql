@@ -28,9 +28,12 @@ export default function ArticleAdd(props) {
                 const data = props.location.state.data[0]
                 const { content } = await axios_get(`/admin/getArticleByIdToUpdate/${articleId}`)
                 data.content = content
+                // data.addTime = new Date(data.addTime).getTime()
                 console.log(data);
+
                 setArticleId(articleId)
                 getArticleByIdToUpdate(data)
+                console.log(showDate);
             } catch (error) {
                 console.log(error);
             }
@@ -40,9 +43,7 @@ export default function ArticleAdd(props) {
     const getArticleType = async () => {
         try {
             const result = await axios_get('/admin/articleType')
-            if (result.code === 200) {
-                setArticleType([...result.data])
-            }
+            setArticleType(result.data)
         } catch (error) {
             if (error.response.status === 401) {
                 message.error("用户未授权！")
@@ -68,6 +69,7 @@ export default function ArticleAdd(props) {
     }
     //文章日期的选择
     const selectDate = (date, dateString) => {
+        console.log(dateString);
         setShowDate(dateString)
     }
     //blog的标题的切换
@@ -76,7 +78,8 @@ export default function ArticleAdd(props) {
     }
     //暂存文章检查
     const saveArticle = () => {
-        if (!selectedType || selectedType == "请选择文章分类") {
+        console.log(selectedType);
+        if (!selectedType || selectedType === "请选择文章类别") {
             message.error('请选择文章类别')
             return false
         } else if (!articleTitle) {

@@ -14,7 +14,7 @@ import { _marked } from '../utils/mark';
 
 
 export default function Detail(props) {
-    const { content, viewCount, title, createTime, typeName } = props
+    const { content, viewCount, title, addTime, typeName } = props
     //用于解析 Markdown 格式，与文章右侧目录的配置
     const tocify = new Tocify()
     const rendererHeadConfig = function (text, level, raw) {
@@ -33,7 +33,7 @@ export default function Detail(props) {
             <Header />
             <Row className="comm-main" type="flex" justify="center">
                 <Col className="comm-left" xs={24} sm={24} md={16} lg={18} xl={14}  >
-                    <DetailRight markdown={html} viewCount={viewCount} title={title} createTime={createTime} typeName={typeName} />
+                    <DetailRight markdown={html} viewCount={viewCount} title={title} addTime={addTime} typeName={typeName} />
                 </Col>
                 <Col className="comm-right" xs={0} sm={0} md={7} lg={5} xl={4}>
                     <Author />
